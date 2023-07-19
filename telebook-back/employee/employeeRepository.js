@@ -1,17 +1,17 @@
 const { Op } = require('sequelize')
 const { Employee } = require('../models/models')
 
+const createEmployee = (name, phone, email, positionId, unitId) => {
+    Employee.create({name, phone, email, positionId, unitId})
+}
+
 const getEmployees = () => {
     const employees = Employee.findAll()
     return employees
 }
 
-const createEmployee = (name, phone, email, positionId, unitId) => {
-    Employee.create({name, phone, email, positionId, unitId})
-}
-
 const getEmployeeByName = (nameLike) => {
-    const employee = Employee.findAll({
+    const employee = Employee.findOne({
         where: {
             name: {
                 [Op.like] : `%${nameLike}%`
@@ -41,4 +41,9 @@ const getEmployeesForUnit = (unitId) => {
     return employeeList
 }
 
-module.exports = { getEmployees, createEmployee, getEmployeeByName, getEmployeesForUnit }
+module.exports = {
+     getEmployees, 
+     createEmployee, 
+     getEmployeeByName, 
+     getEmployeesForUnit 
+}

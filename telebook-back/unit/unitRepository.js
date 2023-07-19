@@ -1,11 +1,29 @@
-const { Unit, Employee, Position } = require('../models/models')
+const { Unit } = require('../models/models')
 
-export const createUnit = (name) => {
+const createUnit = (name) => {
     Unit.create({name})
 }
 
-export const getUnits = () => {
-    const employees = Unit.findAll()
-    return employees
+const getUnits = () => {
+    const units = Unit.findAll()
+    return units
 }
 
+const getUnitByName = (nameLike) => {
+    const unit = Unit.findOne({
+        where: {
+            name: {
+                [Op.like] : `%${nameLike}%`
+            }
+        }
+    })
+    return position
+}
+
+
+
+module.exports = {
+    createUnit, 
+    getUnits,
+    getUnitByName
+}

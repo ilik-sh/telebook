@@ -19,15 +19,24 @@ const Position = sequelize.define('position', {
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
+const UnitHierarchy = sequelize.define('unitHierarchy', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
+})
+
 Unit.hasMany(Employee)
 Employee.belongsTo(Unit)
 
 Position.hasMany(Employee)
 Employee.belongsTo(Position)
 
+UnitHierarchy.belongsTo(Unit, {as: 'parent'})
+UnitHierarchy.belongsTo(Unit, {as: 'child'})
+
+
 
 module.exports = { 
     Employee, 
     Unit, 
-    Position
+    Position, 
+    UnitHierarchy
 }
