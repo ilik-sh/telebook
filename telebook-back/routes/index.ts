@@ -9,4 +9,4 @@ router.use('/employee', employeeRouter)
 router.use('/unit', unitRouter)
 router.use('/position', positionRouter)
 
-module.exports = router
+export default router

@@ -1,5 +1,5 @@
-const sequelize = require('../db')
-const { DataTypes } = require('sequelize') 
+import sequelize from '../db'
+import { DataTypes } from 'sequelize' 
 
 const Employee = sequelize.define('employee', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -34,7 +34,7 @@ UnitHierarchy.belongsTo(Unit, {as: 'child'})
 
 
 
-module.exports = { 
+export default {
     Employee, 
     Unit, 
     Position, 
