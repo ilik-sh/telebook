@@ -1,16 +1,23 @@
+const ApiError = require('../error/ApiError')
 const { Employee } = require('../models/models')
-const { getEmployees, createEmployee, getEmployeeByName, getEmployeesForUnit } = require('./employeeRepository')
+// const { getEmployees, createEmployee, getEmployeeByName, getEmployeesForUnit } = require('./employeeRepository')
 
 class EmployeeController { 
+    constructor(employeeRepository) {
+        this.employeeRepository = employeeRepository
+    }
     async createOne(req, res) {
         const { name, phone, email, positionId, unitId } = req.body
-        const employee = await createEmployee(name, phone, email, positionId, unitId)
+        const employee = await employeeRepository.createEmployee(name, phone, email, positionId, unitId)
         return res.json(employee)
     }
 
-    async getOne(req, res) {
+    async getOne(req, res, next) {
         const { name } = req.body
-        const employee = await getEmployeeByName(name)
+        if (!name) {
+            return next(ApiError.badRequest('Не задан параметр'))
+        }
+        const employee = await employeeRepository.getEmployees
         return res.json(employee)
     }
 
