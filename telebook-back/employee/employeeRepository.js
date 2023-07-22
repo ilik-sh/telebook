@@ -1,5 +1,5 @@
 const { Op } = require('sequelize')
-const { Employee } = require('../models/models')
+const { Employee, Position, Unit } = require('../models/models')
 
 const createEmployee = (name, phone, email, positionId, unitId) => {
     Employee.create({name, phone, email, positionId, unitId})
