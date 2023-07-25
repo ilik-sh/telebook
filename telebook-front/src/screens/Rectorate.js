@@ -1,9 +1,12 @@
 import React from 'react';
+import {Card, Row, Col, Container} from 'react-bootstrap'
+import EmployeeList from '../components/EmployeeList';
 
-const Rectorate = () => {
+const Rectorate = ({employee}) => {
     return (
-        <div>
-        </div>
+      <Container className='d-flex justify-content-center align-items-center'>
+        <EmployeeList />
+      </Container>
     )
 }
 
