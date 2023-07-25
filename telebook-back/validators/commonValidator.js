@@ -1,9 +1,9 @@
 const { body } = require('express-validator')
 
-const unitNameValidator = [
+const nameValidator = [
     body('name').exists()
 ]
 
 module.exports = {
-    unitNameValidator
+    nameValidator
 }
