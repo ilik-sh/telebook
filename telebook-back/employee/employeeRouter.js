@@ -1,10 +1,13 @@
 const Router = require('express')
 const router = new Router
 const employeeController = require('./employeeController')
+const { employeeCreateValidator, employeeNameValidator } = require('./employeeValidator')
+const validationMiddleware = require('../middleware/validationMiddleware')
 
 
-router.post('/', employeeController.createOne)
+router.post('/', employeeCreateValidator, validationMiddleware, employeeController.createOne)
 router.get('/', employeeController.getAll)
-router.get('/findByName', employeeController.getOne)
+router.get('/findForUnit', employeeController.getForUnit)
+router.get('/findByName', employeeNameValidator, validationMiddleware, employeeController.getOne)
 
 module.exports = router

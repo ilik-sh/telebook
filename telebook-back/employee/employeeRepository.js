@@ -14,7 +14,7 @@ const getEmployeeByName = (nameLike) => {
     const employee = Employee.findOne({
         where: {
             name: {
-                [Op.like] : `%${nameLike}%`
+                [Op.like] : `${nameLike}%`
             }
         }
     })

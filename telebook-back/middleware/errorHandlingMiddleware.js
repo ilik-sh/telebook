@@ -1,8 +1,8 @@
 const ApiError = require('../error/ApiError')
 
-module.exports = function (err, req, res, next) {
+module.exports = function(err, req, res, next) {
     if (err instanceof ApiError) {
-        return res.status(err.status).json({message: err.message})
+        return res.status(err.status).json({errors: err})
     }
-    return res.status(500).json({message: 'Unpredicted error'})
+    return res.status(500).json({errors: err})
 }
