@@ -6,9 +6,10 @@ const EmployeeCard = ({employee}) => {
     return (
         <Col className='mt-5 justify-content-center align-items-center'>
             <Card>
-            <Card.Header>Декан</Card.Header>
             <Card.Body className='mt-2'>
                 <Card.Title>{employee.name}</Card.Title>
+                <Card.Subtitle>Декан</Card.Subtitle>
+                <Card.Text></Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item>Телефон: {employee.phone}</ListGroup.Item>

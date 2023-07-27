@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button'
 import {TelebookContext} from '../index'
 import {observer} from 'mobx-react-lite'
-import { DEANERIES_ROUTE, RECTORATE_ROUTE } from "../utils/consts";
+import { DEANERIES_ROUTE, RECTORATE_ROUTE, SEARCH_ROUTE } from "../utils/consts";
 
 const NavBar = observer(() => {
     const { user } = useContext(TelebookContext);
@@ -15,7 +15,7 @@ const NavBar = observer(() => {
                 <Nav className="ml-auto">
                     <Nav.Link href={RECTORATE_ROUTE}>Rectorate</Nav.Link>
                     <Nav.Link href={DEANERIES_ROUTE}>Deaneries</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Nav.Link href={SEARCH_ROUTE}>Search</Nav.Link>
                 </Nav>
                 {user.isAdmin ?
                     <Button variant="secondary">daseqw</Button>
