@@ -3,8 +3,8 @@ const { getEmployees, createEmployee, getEmployeeByName, getEmployeesForUnit } =
 
 class EmployeeController { 
     async createOne(req, res) {
-            const { name, phone, email, positionId, unitId } = req.body
-            const employee = await createEmployee(name, phone, email, positionId, unitId)
+            const { name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId } = req.body
+            const employee = await createEmployee(name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId)
             return res.json(employee)
     }
 
@@ -21,9 +21,6 @@ class EmployeeController {
 
     async getForUnit(req, res, next) {
         const { unitId } = req.body
-        if (!unitId) {
-            return next(ApiError.badRequest('Не задано id отдела'))
-        }
         const employeeList = getEmployeesForUnit(unitId)
         return res.json(employeeList)
     }
