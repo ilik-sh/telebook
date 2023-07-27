@@ -1,17 +1,35 @@
 const { Op } = require('sequelize')
 const { Employee, Position, Unit } = require('../models/models')
 
-const createEmployee = (name, phone, email, positionId, unitId) => {
-    Employee.create({name, phone, email, positionId, unitId})
+const createEmployee = (name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId) => {
+    Employee.create({name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId})
 }
 
 const getEmployees = () => {
-    const employees = Employee.findAll()
-    return employees
+    const employeeList = Employee.findAll({
+        include: [
+            {model: Unit, attributes: ['name']},
+            {model: Position, attributes: ['name']}
+        ],
+        attributes: {
+            exclude: ['id', 'positionId', 'unitId']
+        },
+        order: [
+            [{model: Position}, 'weight', 'DESC']
+        ]
+    })
+    return employeeList
 }
 
 const getEmployeeByName = (nameLike) => {
     const employee = Employee.findOne({
+        include: [
+            {model: Unit, attributes: ['name']},
+            {model: Position, attributes: ['name']}
+        ],
+        attributes: {
+            exclude: ['id', 'positionId', 'unitId']
+        },
         where: {
             name: {
                 [Op.like] : `${nameLike}%`
@@ -28,7 +46,7 @@ const getEmployeesForUnit = (unitId) => {
             {model: Position, attributes: ['name']}
         ],
         attributes: {
-            exclude: ['id', 'createdAt', 'updatedAt', 'positionId', 'unitId']
+            exclude: ['id', 'positionId', 'unitId']
         },
         where: {
             unitId: unitId
