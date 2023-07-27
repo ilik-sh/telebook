@@ -5,6 +5,7 @@ import UserStore from './store/UserStore';
 import EmployeeStore from './store/EmployeeStore';
 
 export const TelebookContext = createContext(null)
+console.log(process.env.REACT_APP_API_ROUTE);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
