@@ -11,15 +11,11 @@ const employeeCreateValidator = [
     body('unitId').exists()
 ]
 
-const employeeNameValidator = [
-    body('name').exists()
-]
-
 const unitIdValidator = [
     body('unitId').exists()
 ]
 
 module.exports = {
     employeeCreateValidator,
-    employeeNameValidator
+    unitIdValidator
 }
