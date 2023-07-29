@@ -7,7 +7,7 @@ const createUnit = (name, weight, parentId) => {
 const getUnits = () => {
     const units = Unit.findAll({
         attributes: {
-            exclude: ['id', 'parentId']
+            exclude: ['parentId']
         }
     })
     return units
@@ -16,7 +16,7 @@ const getUnits = () => {
 const getUnitByName = (nameLike) => {
     const unit = Unit.findOne({
         attributes: {
-            exclude: ['id', 'parentId']
+            exclude: ['parentId']
         },
         where: {
             name: {
@@ -30,7 +30,7 @@ const getUnitByName = (nameLike) => {
 const getUnitById = (unitId) => {
     const unit = Unit.findOne({
         attributes: {
-            exclude: ['id', 'parentId']
+            exclude: ['parentId']
         },
         where: {
             name: {unitId}
@@ -42,7 +42,7 @@ const getUnitById = (unitId) => {
 const getSubunitsForUnit = (unitId) => {
     const units = Unit.findAll({
         attributes: {
-            exclude: ['id', 'parentId']
+            exclude: ['parentId']
         },
         where: {
             parentId: {unitId}
