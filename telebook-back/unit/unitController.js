@@ -1,9 +1,9 @@
-const { getUnits, createUnit, getUnitByName }  = require('./unitRepository')
+const { getUnits, createUnit, getUnitByName, getSubunitsForUnit, getUnitById }  = require('./unitRepository')
 
 class UnitController { 
     async create(req, res) {
-        const { name } = req.body
-        const unit = await createUnit(name)
+        const { name, weight, parentId } = req.body
+        const unit = await createUnit(name, weight, parentId)
         return res.json(unit)
     }
 
@@ -12,10 +12,21 @@ class UnitController {
         return res.json(unitList)
     }
 
-    async getOne(req, res) {
+    async getOneByName(req, res) {
         const { name } = req.body 
         const unit = await getUnitByName(name)
         return res.json(unit)
+    }
+
+    async getOneById(req, res) {
+        const { unitId } = req.body 
+        const unit = await getUnitById(unitId)
+        return res.json(unit)
+    }
+
+    async getSubunits(req, res) {
+        const {unitId} = req.body
+        const unitList = await getSubunitsForUnit(unitId)
     }
 }
 
