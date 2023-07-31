@@ -1,4 +1,4 @@
-const { body, query } = require('express-validator')
+const { body } = require('express-validator')
 
 const unitCreateValidator = [
     body('name').exists(),
@@ -6,13 +6,11 @@ const unitCreateValidator = [
     body('parentId').optional()
 ]
 
-const unitIdQueryValidator = [
-    query('id').exists()
+const unitIdBodyValidator = [
+    body('unitId').exists()
 ]
-
-
 
 module.exports = {
     unitCreateValidator,
-    unitIdQueryValidator
+    unitIdBodyValidator
 } 

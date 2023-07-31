@@ -1,7 +1,9 @@
 const { Unit } = require('../models/models')
+const { Op } =require ('sequelize')
 
 const createUnit = (name, weight, parentId) => {
-    Unit.create({name, weight, parentId})
+    const unit = Unit.create({name, weight, parentId})
+    return unit 
 }
 
 const getUnits = () => {
@@ -14,17 +16,17 @@ const getUnits = () => {
 }
 
 const getUnitByName = (nameLike) => {
-    const unit = Unit.findOne({
+    const unit = Unit.findAll({
         attributes: {
             exclude: ['parentId']
         },
         where: {
             name: {
-                [Op.like] : `%${nameLike}%`
+                [Op.iLike] : `%${nameLike}%`
             }
         }
     })
-    return position
+    return unit
 }
 
 const getUnitById = (unitId) => {
@@ -33,10 +35,10 @@ const getUnitById = (unitId) => {
             exclude: ['parentId']
         },
         where: {
-            name: {unitId}
+            id: unitId
         }
     })
-    return position
+    return unit
 }
 
 const getSubunitsForUnit = (unitId) => {
@@ -45,9 +47,10 @@ const getSubunitsForUnit = (unitId) => {
             exclude: ['parentId']
         },
         where: {
-            parentId: {unitId}
+            parentId: unitId
         }
     })
+    return units
 }
 
 

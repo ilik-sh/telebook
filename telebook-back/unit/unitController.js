@@ -19,14 +19,15 @@ class UnitController {
     }
 
     async getOneById(req, res) {
-        const { unitId } = req.body 
+        const { unitId } = req.body
         const unit = await getUnitById(unitId)
         return res.json(unit)
     }
 
     async getSubunits(req, res) {
-        const {unitId} = req.body
+        const { unitId } = req.body
         const unitList = await getSubunitsForUnit(unitId)
+        return res.json(unitList)
     }
 }
 
