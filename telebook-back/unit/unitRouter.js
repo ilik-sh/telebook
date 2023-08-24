@@ -10,5 +10,6 @@ router.get('/', unitController.getAll)
 router.get('/findByName', nameValidator, validationMiddleware, unitController.getOneByName)
 router.get('/findById', unitIdBodyValidator, validationMiddleware, unitController.getOneById)
 router.get('/findSubunits', unitIdBodyValidator, validationMiddleware, unitController.getSubunits)
+router.get('/findDeaneries', unitController.getDeaneries)
 
 module.exports = router

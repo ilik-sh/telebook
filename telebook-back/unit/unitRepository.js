@@ -53,6 +53,20 @@ const getSubunitsForUnit = (unitId) => {
     return units
 }
 
+const getDeaneries = () => {
+    const deaneries = Unit.findAll({
+        attributes: {
+            exclude: ['parentId']
+        },
+        where: {
+            name: {
+                [Op.iLike] : '%факультет%'
+            }
+        }
+    })
+    return deaneries
+}
+
 
 
 module.exports = {
@@ -60,5 +74,6 @@ module.exports = {
     getUnits,
     getUnitByName,
     getSubunitsForUnit,
-    getUnitById
+    getUnitById,
+    getDeaneries
 }

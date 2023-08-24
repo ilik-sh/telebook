@@ -6,8 +6,9 @@ const Employee = sequelize.define('employee', {
     name: {type: DataTypes.STRING, allowNull: false},
     pasport: {type: DataTypes.STRING, allowNull: false},
     email: {type: DataTypes.STRING, unique: true},
-    phone1: {type: DataTypes.STRING, allowNull: true},
-    phone2: {type: DataTypes.STRING, allowNull: true}
+    internal_phone: {type: DataTypes.STRING, allowNull: true},
+    work_phone: {type: DataTypes.STRING, allowNull: true},
+    mobile_phone: {type: DataTypes.STRING, allowNull: true}
 }, {createdAt: false, updatedAt: false })
 
 const Unit = sequelize.define('unit', {

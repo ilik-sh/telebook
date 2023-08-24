@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Row, Col, Container} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 import EmployeeList from '../components/EmployeeList';
 
 const Rectorate = ({employee}) => {
