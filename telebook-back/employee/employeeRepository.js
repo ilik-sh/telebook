@@ -45,9 +45,6 @@ const getEmployeesForUnit = (unitId) => {
             {model: Unit, attributes: ['name']},
             {model: Position, attributes: ['name']}
         ],
-        attributes: {
-            exclude: ['id', 'positionId', 'unitId']
-        },
         where: {
             unitId: unitId
         },

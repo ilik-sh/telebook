@@ -1,4 +1,4 @@
-const { body } = require('express-validator')
+const { body,query } = require('express-validator')
 
 const employeeCreateValidator = [
     body('name').exists().withMessage('No name provided'),
@@ -12,7 +12,7 @@ const employeeCreateValidator = [
 ]
 
 const unitIdValidator = [
-    body('unitId').exists()
+    query('unitId').exists().toInt()
 ]
 
 module.exports = {

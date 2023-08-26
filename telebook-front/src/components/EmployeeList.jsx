@@ -3,16 +3,17 @@ import {Row} from 'react-bootstrap'
 import { observer } from 'mobx-react-lite';
 import { TelebookContext } from '../index' ;
 import EmployeeCard from './EmployeeCard';
-import { fetchRectorateEmployees } from '../http/employeeAPI';
+import { fetchEmployeesForUnit, fetchRectorateEmployees } from '../http/employeeAPI';
 
-const EmployeeList =() => {
+
+function EmployeeList({unitId}) {
     const [data, setData] = useState(null)
 
     useEffect(() => {
         fetchRectorateEmployees().then(response => {setData(response)})
     }, [])
 
-    if (!data) return null 
+    if (!data) return "Сотрудники не найдены"
 
     return (
         <Row className='justify-content-center' md={3}>

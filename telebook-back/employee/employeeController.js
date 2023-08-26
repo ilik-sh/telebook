@@ -1,4 +1,3 @@
-const ApiError = require('../error/ApiError')
 const { getEmployees, createEmployee, getEmployeeByName, getEmployeesForUnit } = require('./employeeRepository')
 
 class EmployeeController { 
@@ -9,7 +8,7 @@ class EmployeeController {
     }
 
     async getOne(req, res) {
-            const { name } = req.body
+            const { name } = req.query
             const employee = await getEmployeeByName(name)
             return res.json(employee)
     }
@@ -20,8 +19,8 @@ class EmployeeController {
     }
 
     async getForUnit(req, res, next) {
-        const { unitId } = req.body
-        const employeeList = getEmployeesForUnit(unitId)
+        const { unitId } = req.query
+        const employeeList = await getEmployeesForUnit(unitId)
         return res.json(employeeList)
     }
 }
