@@ -1,7 +1,7 @@
-const { body } = require('express-validator')
+const { param } = require('express-validator')
 
 const nameValidator = [
-    body('name').exists()
+    param('name').exists()
 ]
 
 module.exports = {

@@ -8,7 +8,7 @@ class PositionController {
     }
 
     async getOne(req, res) {
-        const { name } = req.body
+        const { name } = req.params
         const position = await getPositionByName(name)
         return res.json(position)
     }
