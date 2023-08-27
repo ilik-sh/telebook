@@ -1,4 +1,5 @@
-const { body } = require('express-validator')
+const { body, param } = require('express-validator')
+const { getUnitById } = require('./unitRepository')
 
 const unitCreateValidator = [
     body('name').exists(),
@@ -6,11 +7,16 @@ const unitCreateValidator = [
     body('parentId').optional()
 ]
 
-const unitIdBodyValidator = [
-    body('unitId').exists()
+const unitIdValidator = [
+    param('unitId').isInt().toInt().custom(async (unitId) => {
+        const unit = await getUnitById(Math.floor(unitId))
+        if (!unit) {
+             throw new ApiError(500, "Не найден отдел")
+        }
+    })
 ]
 
 module.exports = {
     unitCreateValidator,
-    unitIdBodyValidator
+    unitIdValidator
 } 

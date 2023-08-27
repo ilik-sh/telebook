@@ -7,19 +7,12 @@ const createUnit = (name, weight, parentId) => {
 }
 
 const getUnits = () => {
-    const units = Unit.findAll({
-        attributes: {
-            exclude: ['parentId']
-        }
-    })
+    const units = Unit.findAll({})
     return units
 }
 
 const getUnitByName = (nameLike) => {
     const unit = Unit.findAll({
-        attributes: {
-            exclude: ['parentId']
-        },
         where: {
             name: {
                 [Op.iLike] : `%${nameLike}%`
@@ -31,9 +24,6 @@ const getUnitByName = (nameLike) => {
 
 const getUnitById = (unitId) => {
     const unit = Unit.findOne({
-        attributes: {
-            exclude: ['parentId']
-        },
         where: {
             id: unitId
         }
@@ -43,28 +33,11 @@ const getUnitById = (unitId) => {
 
 const getSubunitsForUnit = (unitId) => {
     const units = Unit.findAll({
-        attributes: {
-            exclude: ['parentId']
-        },
         where: {
             parentId: unitId
         }
     })
     return units
-}
-
-const getDeaneries = () => {
-    const deaneries = Unit.findAll({
-        attributes: {
-            exclude: ['parentId']
-        },
-        where: {
-            name: {
-                [Op.iLike] : '%факультет%'
-            }
-        }
-    })
-    return deaneries
 }
 
 
@@ -74,6 +47,5 @@ module.exports = {
     getUnits,
     getUnitByName,
     getSubunitsForUnit,
-    getUnitById,
-    getDeaneries
+    getUnitById
 }
