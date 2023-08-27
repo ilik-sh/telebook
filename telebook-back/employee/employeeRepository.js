@@ -1,8 +1,18 @@
 const { Op } = require('sequelize')
 const { Employee, Position, Unit } = require('../models/models')
 
+
 const createEmployee = (name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId) => {
-    Employee.create({name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId})
+    Employee.create({
+         name,
+         pasport, 
+         internal_phone, 
+         work_phone, 
+         mobile_phone, 
+         email, 
+         positionId, 
+         unitId
+    })
 }
 
 const getEmployees = () => {
@@ -11,31 +21,41 @@ const getEmployees = () => {
             {model: Unit, attributes: ['name']},
             {model: Position, attributes: ['name']}
         ],
-        attributes: {
-            exclude: ['id', 'positionId', 'unitId']
-        },
         order: [
             [{model: Position}, 'weight', 'DESC']
         ]
     })
+
     return employeeList
 }
 
-const getEmployeeByName = (nameLike) => {
+const getEmployeeById = (employeeId) => {
     const employee = Employee.findOne({
         include: [
             {model: Unit, attributes: ['name']},
             {model: Position, attributes: ['name']}
         ],
-        attributes: {
-            exclude: ['id', 'positionId', 'unitId']
-        },
+        where: {
+            id: employeeId
+        }
+    })
+
+    return employee
+}
+
+const getEmployeeByName = (nameLike) => {
+    const employee = Employee.findAll({
+        include: [
+            {model: Unit, attributes: ['name']},
+            {model: Position, attributes: ['name']}
+        ],
         where: {
             name: {
                 [Op.like] : `${nameLike}%`
             }
         }
     })
+
     return employee
 }
 
@@ -56,9 +76,43 @@ const getEmployeesForUnit = (unitId) => {
     return employeeList
 }
 
+const deleteEmployee = (employeeId) => {
+    const deletedEmployee = Employee.destroy({
+        where: {
+            id: employeeId
+        }
+    })
+
+    return deletedEmployee
+}
+
+const updateEmployee = async (employeeId, name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId) => {
+    const foundEmployee = await Employee.findOne({
+        where: {
+            id: employeeId
+        }
+    })
+    
+    foundEmployee.set({
+        name: name ? name : foundEmployee.name,
+        pasport: pasport ? pasport : foundEmployee.pasport, 
+        internal_phone: internal_phone ? internal_phone : foundEmployee.internal_phone, 
+        work_phone: work_phone ? work_phone : foundEmployee.work_phone, 
+        mobile_phone: mobile_phone ? mobile_phone : foundEmployee.mobile_phone, 
+        email: email ? email : foundEmployee.email, 
+        positionId: positionId ? positionId : foundEmployee.positionId, 
+        unitId: unitId ? unitId : foundEmployee.unitId
+    })
+    await foundEmployee.save()
+    return foundEmployee
+}
+
 module.exports = {
      getEmployees, 
-     createEmployee, 
      getEmployeeByName, 
-     getEmployeesForUnit 
+     getEmployeeById,
+     getEmployeesForUnit,
+     createEmployee, 
+     deleteEmployee, 
+     updateEmployee
 }

@@ -1,4 +1,6 @@
-const { body,query } = require('express-validator')
+const { body,query, param, check } = require('express-validator')
+const { getEmployeeById } = require('./employeeRepository')
+const ApiError = require('../error/ApiError')
 
 const employeeCreateValidator = [
     body('name').exists().withMessage('No name provided'),
@@ -12,10 +14,20 @@ const employeeCreateValidator = [
 ]
 
 const unitIdValidator = [
-    query('unitId').exists().toInt()
+    query('unitId').exists().toInt()  
+]
+
+const employeeIdValidator = [
+    param('employeeId').isInt().toInt().custom(async (employeeId) => {
+        const employee = await getEmployeeById(Math.floor(employeeId))
+        if (!employee) {
+             throw new ApiError(500, "Не найден сотрудник")
+        }
+    })
 ]
 
 module.exports = {
     employeeCreateValidator,
-    unitIdValidator
+    unitIdValidator, 
+    employeeIdValidator
 }

@@ -1,4 +1,4 @@
-const { getEmployees, createEmployee, getEmployeeByName, getEmployeesForUnit } = require('./employeeRepository')
+const { getEmployees, createEmployee, getEmployeeByName, getEmployeesForUnit, deleteEmployee, updateEmployee } = require('./employeeRepository')
 
 class EmployeeController { 
     async createOne(req, res) {
@@ -18,10 +18,24 @@ class EmployeeController {
         return res.json(employeeList)
     }
 
-    async getForUnit(req, res, next) {
+    async getForUnit(req, res) {
         const { unitId } = req.query
         const employeeList = await getEmployeesForUnit(unitId)
         return res.json(employeeList)
+    }
+
+    async delete(req, res) {
+        const {employeeId} = req.params
+        console.log(employeeId)
+        const deletedEmployee = await deleteEmployee(employeeId)
+        return res.json(deletedEmployee)
+    }
+
+    async update(req, res) {
+        const { name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId } = req.body
+        const {employeeId} = req.params
+        const updatedEmployee = await updateEmployee(employeeId, name, pasport, internal_phone, work_phone, mobile_phone, email, positionId, unitId)
+        return res.json(updatedEmployee)
     }
 }
 
