@@ -6,14 +6,12 @@ export const createEmployee = async (employee) => {
 }
 
 export const fetchRectorateEmployees = async () => {
-    const {data} = await $host.get('api/employee')
+    const {data} = await $host.get('api/employee/findForUnit' + 2)
     return data
 }
 
 export const fetchEmployeesForUnit = async (unitId) => {
-    const formData = new FormData()
-    formData.append("id", unitId)
-    const {data} = await $host.get('api/employee/findForUnit/')
+    const {data} = await $host.get('api/employee/findForUnit/' + unitId)
     return data
 }   
 

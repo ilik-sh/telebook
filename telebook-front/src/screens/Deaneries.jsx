@@ -6,7 +6,7 @@ import UnitList from '../components/UnitList';
 const Deaneries = ({employee}) => {
     return (
       <Container className='d-flex justify-content-center align-items-center'>
-        <UnitList/>
+        <UnitList unitId={4}/>
       </Container>
     )
 }

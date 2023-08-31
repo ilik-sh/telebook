@@ -1,11 +1,12 @@
 import Rectorate from "./screens/Rectorate";
 import Deaneries from "./screens/Deaneries";
 import Search from "./screens/Search";
-import { DEANERIES_ROUTE, RECTORATE_ROUTE, SEARCH_ROUTE } from "./utils/consts";
+import { DEANERIES_ROUTE, RECTORATE_ROUTE, SEARCH_ROUTE, UNIT_ROUTE } from "./utils/consts";
 import employeeDatabase from "./screens/employeeDatabase";
 import Departments from "./screens/Departments";
+import UnitPage from "./screens/UnitPage/UnitPage";
 
-export const publicRoutes = [
+export const navRoutes = [
     {
         path: RECTORATE_ROUTE,
         Element: Rectorate,
@@ -31,4 +32,10 @@ export const publicRoutes = [
         Element: employeeDatabase,
         name: "База сотрудников"
     }
+]
+
+export const unitRoute = {path: UNIT_ROUTE + '/:unitId', Element: UnitPage, name: "Страница подразделения"}
+
+export const publicRoutes = [
+   
 ]

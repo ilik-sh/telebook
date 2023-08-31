@@ -2,24 +2,19 @@ import React, { useEffect, useState } from 'react';
 import {Row} from 'react-bootstrap'
 import { observer } from 'mobx-react-lite';
 import { TelebookContext } from '../index' ;
-import EmployeeCard from './EmployeeCard';
-import { fetchDeaneries } from '../http/unitAPI';
+import { fetchDeaneries, fetchSubunitsForUnit } from '../http/unitAPI';
+import { UNIT_ROUTE } from '../utils/consts';
 
-const UnitList = observer( () => {
-    const [data, setData] = useState(null)
+const UnitList = observer( ({units}) => {
 
-    useEffect(() => {
-        fetchDeaneries().then(response => {setData(response)})
-    }, [])
-
-    if (!data) return null 
+    if (!units) return null 
 
     return (
-    <Row className='d-flex justify-content-center align-items-center' md={3}>
-        {data.map(unit => 
-            <div key='id'>{unit.name}</div>
+    <ul>
+        {units.map(unit =>
+            <li key={unit.id}><a href={UNIT_ROUTE+`/${unit.id}`}>{unit.name}</a></li>
         )}
-    </Row>
+    </ul>
     )
 })
 

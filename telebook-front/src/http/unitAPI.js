@@ -1,9 +1,7 @@
 import { $host } from "."
 
 export const fetchSubunitsForUnit = async (unitId) => {
-    const formData = new FormData()
-    formData.append("id", unitId)
-    const {data} = await $host.get('api/unit/findSubunits/')
+    const {data} = await $host.get('api/unit/findSubunits/' + unitId)
     return data
 }
 

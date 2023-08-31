@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import {Nav, Navbar, Button} from 'react-bootstrap';
 import {TelebookContext} from '../index'
 import {observer} from 'mobx-react-lite'
-import { publicRoutes } from "../routes";
+import { navRoutes } from "../routes";
 import SearchForm from "./SearchForm";
 
 const NavBar = observer(() => {
@@ -16,7 +16,7 @@ const NavBar = observer(() => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className='text-nowrap me-auto'>
             {
-                publicRoutes.map((item) => (
+                navRoutes.map((item) => (
                     <Nav.Link href={item.path} key={item.name} >{item.name}</Nav.Link>
                 ))
             }
