@@ -1,4 +1,4 @@
-const { body,query, param, check } = require('express-validator')
+const { body, param } = require('express-validator')
 const { getEmployeeById } = require('./employeeRepository')
 const ApiError = require('../error/ApiError')
 
@@ -14,7 +14,7 @@ const employeeCreateValidator = [
 ]
 
 const unitIdValidator = [
-    query('unitId').exists().toInt()  
+    param('unitId').exists().toInt()  
 ]
 
 const employeeIdValidator = [
