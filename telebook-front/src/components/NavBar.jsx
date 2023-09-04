@@ -9,7 +9,7 @@ import SearchForm from "./SearchForm";
 const NavBar = observer(() => {
     const { user } = useContext(TelebookContext);
     return (
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar bg="light" data-bs-theme="light" collapseOnSelect expand="lg">
       <Container fluid >
         <Navbar.Brand>Телефонный справочник БГМУ</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

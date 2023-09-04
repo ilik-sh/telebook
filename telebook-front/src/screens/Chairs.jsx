@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import {Container} from 'react-bootstrap'
-import EmployeeList from '../components/EmployeeList/EmployeeList';
 import UnitList from '../components/UnitList';
 import UnitStore from '../store/UnitStore';
 import {observer} from 'mobx-react-lite'
 
 const unitStore = new UnitStore
 
-const Deaneries = observer(() => {
+const Chairs = observer(() => {
     useEffect( () => {
-      unitStore.fetchDeaneriesAction()
+      unitStore.fetchChairsAction()
   }, [])
 
     return (
@@ -18,5 +17,4 @@ const Deaneries = observer(() => {
       </Container>
     )
 })
-
-export default Deaneries
+export default Chairs;

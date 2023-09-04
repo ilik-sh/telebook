@@ -5,7 +5,7 @@ import { TelebookContext } from '../index' ;
 import { fetchDeaneries, fetchSubunitsForUnit } from '../http/unitAPI';
 import { UNIT_ROUTE } from '../utils/consts';
 
-const UnitList = observer( ({units}) => {
+const UnitList = observer(({units}) => {
 
     if (!units) return null 
 

@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {Row} from 'react-bootstrap'
-import { observer } from 'mobx-react-lite';
-import { TelebookContext } from '../index' ;
-import EmployeeCard from './EmployeeCard';
-import { fetchEmployeesForUnit } from '../http/employeeAPI';
+import EmployeeCard from '../EmployeeCard';
+import { fetchEmployeesForUnit } from '../../http/employeeAPI';
+import {observer} from 'mobx-react-lite'
 
 
-function EmployeeList({employees}) {
+const EmployeeList = observer(({employees}) => {
     if (!employees) return "Сотрудники не найдены"
 
     return (
@@ -16,6 +15,6 @@ function EmployeeList({employees}) {
             )}
         </Row>
         )
-}
+})
 
 export default EmployeeList

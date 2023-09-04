@@ -9,3 +9,8 @@ export const fetchDeaneries = async () => {
     const {data} = await $host.get('api/unit/findDeaneries')
     return data
 }
+
+export const fetchChairs = async () => {
+    const {data} = await $host.get('api/unit/findChairs')
+    return data
+}

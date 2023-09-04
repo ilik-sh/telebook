@@ -1,9 +1,9 @@
 import React from 'react';
 import {Container} from 'react-bootstrap'
-import EmployeeList from '../components/EmployeeList';
 import { RECTORATE_ID } from '../utils/consts';
 import { useEffect, useState } from 'react';
 import { fetchEmployeesForUnit } from '../http/employeeAPI';
+import EmployeeList from '../components/EmployeeList/EmployeeList';
 
 const Rectorate = () => {
     const [employees, setEmployees] = useState(null)
