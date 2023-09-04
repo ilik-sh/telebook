@@ -19,7 +19,7 @@ class EmployeeController {
     }
 
     async getForUnit(req, res) {
-        const { unitId } = req.query
+        const { unitId } = req.params
         const employeeList = await getEmployeesForUnit(unitId)
         return res.json(employeeList)
     }

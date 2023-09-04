@@ -14,7 +14,7 @@ const employeeCreateValidator = [
 ]
 
 const unitIdValidator = [
-    query('unitId').exists().toInt()  
+    param('unitId').exists().toInt()  
 ]
 
 const employeeIdValidator = [

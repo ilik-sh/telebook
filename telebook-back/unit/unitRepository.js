@@ -40,12 +40,34 @@ const getSubunitsForUnit = (unitId) => {
     return units
 }
 
+const getDeaneries = () => {
+    const deaneries = Unit.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `%факультет%`
+            }
+        }
+    })
+    return deaneries
+}
 
+const getChairs = () => {
+    const chairs = Unit.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `%кафедра%`
+            }
+        }
+    })
+    return chairs
+}
 
 module.exports = {
     createUnit, 
     getUnits,
-    getUnitByName,
+    getUnitByName,  
     getSubunitsForUnit,
-    getUnitById
+    getUnitById,
+    getDeaneries,
+    getChairs
 }

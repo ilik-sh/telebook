@@ -10,7 +10,7 @@ router.post('/', employeeCreateValidator, validationMiddleware, employeeControll
 router.get('/', employeeController.getAll)
 router.delete('/:employeeId', employeeIdValidator, validationMiddleware, employeeController.delete)
 router.put('/:employeeId', employeeIdValidator, validationMiddleware, employeeController.update)
-router.get('/findForUnit', unitIdValidator, validationMiddleware, employeeController.getForUnit)
+router.get('/findForUnit/:unitId', unitIdValidator, validationMiddleware, employeeController.getForUnit)
 router.get('/findByName', nameValidator, validationMiddleware, employeeController.getOne)
 
 module.exports = router
