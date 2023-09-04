@@ -1,32 +1,36 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable, runInAction } from "mobx"
+import { fetchAllEmployees, fetchEmployeesForUnit } from "../http/employeeAPI"
 
 export default class EmployeeStore {
+
+    _employees = []
+
     constructor() {
-
-        this._employees =[]
-
         makeAutoObservable(this)
     }
 
-    
-
-    setPositions(positions) {
-        this._positions = positions
+    fetchEmployeesAction = async (unitId) => {
+        try {
+            const fetchedEmployees = await fetchEmployeesForUnit(unitId)
+            this._employees = fetchedEmployees
+        } catch {
+            throw new Error("Error fetching employees")
+        }
     }
 
-    setEmployees(employees) {
-        this._employees = employees
-    }
-
-    get units() {
-        return this._units
-    }
-
-     get positions() {
-        return this._positions
+    fetchAllEmployeesAction = async () => {
+        try {
+            const fetchedEmployees = await fetchAllEmployees()
+            console.log(fetchedEmployees)
+            this._employees = fetchedEmployees
+        } catch {
+            throw new Error("Error fetching employees")
+        }
     }
 
     get employees() {
         return this._employees
     }
+
 }
+

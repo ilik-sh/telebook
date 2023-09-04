@@ -1,29 +1,31 @@
-import React from 'react';
-import EmployeeList from '../../components/EmployeeList';
+import React, { useState } from 'react';
+import EmployeeList from '../../components/EmployeeList/EmployeeList';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { fetchSubunitsForUnit } from '../../http/unitAPI';
-import { fetchEmployeesForUnit } from '../../http/employeeAPI';
+import { useEffect } from 'react';
 import UnitList from '../../components/UnitList';
+import UnitStore from '../../store/UnitStore';
+import EmployeeStore from '../../store/EmployeeStore';
+import {observer} from 'mobx-react-lite'
 
-function UnitPage(props) {
-    const [subunits, setSubunits] = useState(null)
-    const [employees, setEmployees] = useState(null)
+const employeeStore = new EmployeeStore
+const unitStore = new UnitStore
+
+const UnitPage = observer(() => {
     const {unitId} = useParams()
-    console.log(unitId)
 
     useEffect( () => {
-        fetchSubunitsForUnit(unitId).then(subunits => setSubunits(subunits))
-        fetchEmployeesForUnit(unitId).then(employees => setEmployees(employees))
-    }, [unitId])
+        employeeStore.fetchEmployeesAction(unitId)
+        unitStore.fetchSubunitsAction(unitId)
+    }, [])
+
     return (
         <div>
-            <h1>Сотрудники</h1>
-            <EmployeeList employees={employees}></EmployeeList>
+            <h2>Сотрудники</h2>
+            <EmployeeList employees={employeeStore.employees}></EmployeeList>
             <h2>Подразделения</h2>
-            <UnitList units={subunits}></UnitList>
+            <UnitList units={unitStore.units}></UnitList>
         </div>
     );
-}
+})
 
 export default UnitPage;

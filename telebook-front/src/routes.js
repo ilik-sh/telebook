@@ -1,10 +1,10 @@
 import Rectorate from "./screens/Rectorate";
 import Deaneries from "./screens/Deaneries";
 import Search from "./screens/Search";
-import { DEANERIES_ROUTE, RECTORATE_ROUTE, SEARCH_ROUTE, UNIT_ROUTE } from "./utils/consts";
-import employeeDatabase from "./screens/employeeDatabase";
-import Departments from "./screens/Departments";
+import { CHAIRS_ROUTE, DEANERIES_ROUTE, EMPLOYEE_DATABASE_ROUTE, RECTORATE_ROUTE, SEARCH_ROUTE, UNITS_ROUTE, UNIT_ROUTE } from "./utils/consts";
+import EmployeeDatabase from './screens/EmployeeDatabase'
 import UnitPage from "./screens/UnitPage/UnitPage";
+import Chairs from "./screens/Chairs";
 
 export const navRoutes = [
     {
@@ -18,18 +18,18 @@ export const navRoutes = [
         name: "Деканаты"
     },
     {
-        path: SEARCH_ROUTE,
-        Element: Search,
+        path: CHAIRS_ROUTE,
+        Element: Chairs,
         name: "Кафедры"
     },
     {
-        path: SEARCH_ROUTE,
-        Element: Departments,
+        path: UNITS_ROUTE,
+        Element: Chairs,
         name: "Подразделения"
     },
     {
-        path: SEARCH_ROUTE,
-        Element: employeeDatabase,
+        path: EMPLOYEE_DATABASE_ROUTE,
+        Element: EmployeeDatabase,
         name: "База сотрудников"
     }
 ]
