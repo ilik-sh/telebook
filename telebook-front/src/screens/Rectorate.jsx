@@ -1,22 +1,31 @@
 import React from 'react';
-import {Container} from 'react-bootstrap'
-import { RECTORATE_ID } from '../utils/consts';
-import { useEffect, useState } from 'react';
-import { fetchEmployeesForUnit } from '../http/employeeAPI';
+import { useEffect } from 'react';
+import { observer } from 'mobx-react-lite'
+
 import EmployeeList from '../components/EmployeeList/EmployeeList';
+import Section from '../components/Section/Section';
+import EmployeeStore from '../store/EmployeeStore';
+import Wrapper from '../components/Wrapper/Wrapper';
+import Title from '../components/Title/Title';
 
-const Rectorate = () => {
-    const [employees, setEmployees] = useState(null)
 
-    useEffect( () => {
-      fetchEmployeesForUnit(RECTORATE_ID).then(employees => setEmployees(employees))
-  }, [])
+const employeeStore = new EmployeeStore
+
+const Rectorate = observer(() => {
+    useEffect (() => {
+        employeeStore.fetchEmployeesAction(2)
+    }, [])
 
     return (
-      <Container className='d-flex justify-content-center align-items-center'>
-        <EmployeeList employees={employees}/>
-      </Container>
+      <div className='main'>
+        <Title title="Ректорат"></Title>
+        <Wrapper>
+          <Section title="Сотрудники">
+            <EmployeeList employees={employeeStore.employees}></EmployeeList>
+          </Section>
+        </Wrapper>
+      </div>
     )
-}
+})
 
 export default Rectorate

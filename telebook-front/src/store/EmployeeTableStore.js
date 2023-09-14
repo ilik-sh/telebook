@@ -25,7 +25,7 @@ export default class EmployeeTableStore {
     }
 
     setSelectedPage = (page) => {
-        if (this._selectedPage != page) {
+        if (this._selectedPage !== page) {
             this._selectedPage = page
         }
         
@@ -46,7 +46,6 @@ export default class EmployeeTableStore {
     get pages() {
         let pages =[]
         this._employees.map((_, index) => {
-            console.log(this._employees[index])
             pages.push(<Pagination.Item
                 onClick={() => this.setSelectedPage(index+1)}
                 key={index+1}

@@ -2,3 +2,23 @@
     margin: 0;
     padding: 0;
 }
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+}
+
+p {
+    margin: 0;
+}
+
+.main {
+    width: 90%;
+    margin: 0 auto;
+}

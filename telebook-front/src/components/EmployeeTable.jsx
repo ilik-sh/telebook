@@ -5,6 +5,7 @@ function EmployeeTable({employees}) {
     useEffect(() => {
         console.log("Table rerender")
     })
+    
     return (
         <div>
             <Table>

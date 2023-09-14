@@ -1,0 +1,25 @@
+.info p {
+    font-size: 24px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.position {
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.unit {
+    color: #a0a0a0;
+}
+
+.additional {
+    display: flex;
+    flex-direction: column;
+}
+
+.additional span {
+    font-weight: 500;
+    font-size: 14px;
+}

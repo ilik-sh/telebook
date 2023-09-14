@@ -1,0 +1,11 @@
+.section {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.section h1 { 
+    color: #000;
+    width: 100%;
+    font-weight: 700;
+    margin-bottom: 40px;
+}

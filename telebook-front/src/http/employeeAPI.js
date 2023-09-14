@@ -13,7 +13,6 @@ export const fetchAllEmployees = async () => {
 
 export const fetchEmployeesForUnit = async (unitId) => {
     const {data} = await $host.get('api/employee/findForUnit/' + unitId)
-    console.log(data)
     return data
 }   
 

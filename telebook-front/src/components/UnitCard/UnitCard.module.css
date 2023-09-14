@@ -1,0 +1,50 @@
+.card {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #fff ;
+    border-radius: 8px;
+    box-shadow: 0 2px 66px rgba(125, 143, 179, 0.15);
+    padding: 26px;
+    min-height: 200px;
+    min-width: 200px;
+}
+
+.unit {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 17px;
+    font-weight: 600;
+    color: #a0a0a0;
+}
+
+.link svg {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    transition: margin 0.35s ease;
+}
+
+.link {
+    display: flex;
+    color: #2e4a97;
+    fill: #2e4a97;
+    text-decoration: none;
+    align-items: center;
+    margin: 0;
+    transition: .35s ease;
+}
+
+.link:hover {
+    color: #284185;
+    
+}
+
+.link:hover > svg {
+    fill: #284185;
+    margin-left: 30px;
+}

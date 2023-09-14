@@ -12,17 +12,9 @@ export default class EmployeeStore {
     fetchEmployeesAction = async (unitId) => {
         try {
             const fetchedEmployees = await fetchEmployeesForUnit(unitId)
-            this._employees = fetchedEmployees
-        } catch {
-            throw new Error("Error fetching employees")
-        }
-    }
-
-    fetchAllEmployeesAction = async () => {
-        try {
-            const fetchedEmployees = await fetchAllEmployees()
-            console.log(fetchedEmployees)
-            this._employees = fetchedEmployees
+            runInAction(() => {
+                this._employees = fetchedEmployees
+            })
         } catch {
             throw new Error("Error fetching employees")
         }

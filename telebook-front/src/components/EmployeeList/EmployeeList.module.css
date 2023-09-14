@@ -1,0 +1,7 @@
+.rule {
+  background-color: #dedede;
+  opacity: 0.1;
+  box-shadow: 0 0 4px 0 #666;
+  width: 66%;
+  margin: 2rem auto;
+}
