@@ -15,7 +15,7 @@ const EmployeeList = observer(({employees}) => {
     )
 
     return (
-            <Row>
+            <Row className='gy-2'>
                 {employees.map((employee, index) =>
                     <Col key={employee.id} md={6}>
                         <EmployeeCard employee={employee} />

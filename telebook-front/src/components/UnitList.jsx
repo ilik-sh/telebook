@@ -17,7 +17,7 @@ const UnitList = observer(({units}) => {
     )
 
     return (
-    <Row>
+    <Row className='gy-2'>
             {units.map(unit =>
             <Col md={4} key={unit.id}>
                  <UnitCard unit={unit} key={unit.id}></UnitCard>
