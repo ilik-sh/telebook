@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { fetchSubunitsForUnit, fetchDeaneries, fetchChairs } from "../http/unitAPI"
+import { fetchSubunitsForUnit, fetchDeaneries, fetchChairs } from "../api/unitAPI"
 
 export default class UnitStore {
 

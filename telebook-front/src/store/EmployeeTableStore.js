@@ -1,5 +1,5 @@
 import { Pagination } from "react-bootstrap"
-import { fetchAllEmployees } from "../http/employeeAPI"
+import { fetchAllEmployees } from "../api/employeeAPI"
 import { makeAutoObservable, runInAction } from "mobx"
 
 

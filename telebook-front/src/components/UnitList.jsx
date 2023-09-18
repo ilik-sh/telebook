@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Row, Col} from 'react-bootstrap'
 import { observer } from 'mobx-react-lite';
 import { TelebookContext } from '../index' ;
-import { fetchDeaneries, fetchSubunitsForUnit } from '../http/unitAPI';
+import { fetchDeaneries, fetchSubunitsForUnit } from '../api/unitAPI';
 import { UNIT_ROUTE } from '../utils/consts';
 import { Spinner } from 'react-bootstrap';
 import UnitCard from './UnitCard/UnitCard';

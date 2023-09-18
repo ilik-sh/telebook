@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { fetchAllEmployees, fetchEmployeesForUnit } from "../http/employeeAPI"
+import { fetchAllEmployees, fetchEmployeesForUnit } from "../api/employeeAPI"
 
 export default class EmployeeStore {
 
