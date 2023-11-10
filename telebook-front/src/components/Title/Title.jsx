@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Title.module.css'
 
 
-function Title(props) {
+function Title({title}) {
     return (
         <div className={styles.title}>
-            <h1>{props.title.toUpperCase()}</h1>
+            <h1>{title.toUpperCase()}</h1>
         </div>
     );
 }

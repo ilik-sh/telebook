@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Section.module.css'
 
-function Section(props) {
+function Section({title, children}) {
     return (
         <div className={styles.section}>
-            <h1>{props.title}</h1>
-            {props.children}
+            <h1>{title}</h1>
+            {children}
         </div>
     );
 }
