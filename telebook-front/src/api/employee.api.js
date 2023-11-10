@@ -1,38 +1,98 @@
 import { api } from "./api";
 
+
 export const employeeApi = api.injectEndpoints({
     endpoints: builder => ({
         getEmployees: builder.query({
-            query: () => 'employee/'
+            queryFn: async () => {
+                try {
+                    const response = await fetch(process.env.REACT_APP_API_ROUTE + 'employee/')
+                    const data = await response.json()
+                    return {data: data}
+                }
+                catch (e) {
+                    return {error: e.message}
+                }
+            }
         }),
         getEmployeesForUnit: builder.query({
-            query: (id) => `employee/findForUnit/${id}`
+            queryFn: async (id) => {
+                    try {
+                        const response = await fetch(process.env.REACT_APP_API_ROUTE + 'employee/findForUnit/' + id)
+                        const data = await response.json()
+                        return {data: data}
+                    }
+                    catch (e) {
+                        return {error: e.message}
+                    }
+                }
         }),
         getEmployeeByName: builder.query({
-            query: (name) => ({
-                url: 'employee/findByName',
-                params: {name}
-            })
+            queryFn: async (name) => {
+                try {
+                    const response = await fetch(process.env.REACT_APP_API_ROUTE + 'employee/findByName?' + new URLSearchParams({
+                        name: name
+                    }))
+                    const data = await response.json()
+                    return {data: data}
+                }
+                catch (e) {
+                    return {error: e.message}
+                }
+            }
+
         }),
         deleteEmployee: builder.mutation({
-            query: (id) => ({
-                url: `employee/${id}`,
-                method: 'DELETE'
-            })
+            queryFn: async (id) => {
+                try {
+                    const response = await fetch(process.env.REACT_APP_API_ROUTE + 'employee/' + id, {
+                        method: "DELETE"
+                    })
+                    const data = await response.json()
+                    return {data: data}
+                }
+                catch (e) {
+                    return {error: e.message}
+                }
+            }
         }), 
         updateEmployee: builder.mutation({
-            query: (id, ...employee) => ({
-                url: `employee/${id}`,
-                method: 'PUT',
-                body: employee
-            })
+            queryFn: async (id, ...employee) => {
+                try {
+                    const response = await fetch(process.env.REACT_APP_API_ROUTE + 'employee/' + id, {
+                        method: "PUT", 
+                        body: JSON.stringify(employee)
+                    })
+                    const data = await response.json()
+                    return {data: data}
+                }
+                catch (e) {
+                    return {error: e.message}
+                }
+            }
         }), 
         createEmployee: builder.mutation({
-            query: (...employee) => ({
-                url: 'employee/',
-                method: 'POST',
-                body: employee
-            })
+            queryFn: async (...employee) => {
+                try {
+                    const response = await fetch(process.env.REACT_APP_API_ROUTE + 'employee/', {
+                        method: "POST",
+                        body: JSON.stringify(employee)
+                    })
+                    const data = await response.json()
+                    return {data: data}
+                }
+                catch (e) {
+                    return {error: e.message}
+                }
+            }
         }),
     })
 })
+
+export const {
+    useGetEmployeesQuery, 
+    useGetEmployeesForUnitQuery, 
+    useGetEmployeeByNameQuery, 
+    useDeleteEmployeeMutation, 
+    useUpdateEmployeeMutation, 
+    useCreateEmployeeMutation} = employeeApi
