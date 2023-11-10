@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Table } from 'react-bootstrap';
 
 function EmployeeTable({employees}) {
-    useEffect(() => {
-        console.log("Table rerender")
-    })
-    
     return (
         <div>
             <Table>

@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {Row, Col} from 'react-bootstrap'
-import { observer } from 'mobx-react-lite';
-import { TelebookContext } from '../index' ;
-import { fetchDeaneries, fetchSubunitsForUnit } from '../api/unitAPI';
-import { UNIT_ROUTE } from '../utils/consts';
 import { Spinner } from 'react-bootstrap';
 import UnitCard from './UnitCard/UnitCard';
+import Section from './Section/Section';
 
 
-const UnitList = observer(({units}) => {
+const UnitList = ({units}) => {
 
     if (!units) return (
         <Spinner animation="border" role="status">
@@ -17,14 +14,17 @@ const UnitList = observer(({units}) => {
     )
 
     return (
-    <Row className='gy-2'>
-            {units.map(unit =>
-            <Col md={4} key={unit.id}>
-                 <UnitCard unit={unit} key={unit.id}></UnitCard>
-            </Col>
-            )}
-    </Row>
+        <Section title="Подразделения">
+            <Row className='gy-2'>
+                {units.map(unit =>
+                <Col md={4} key={unit.id}>
+                    <UnitCard unit={unit} key={unit.id}></UnitCard>
+                </Col>
+                )}
+            </Row>
+        </Section>
+    
     )
-})
+}
 
 export default UnitList

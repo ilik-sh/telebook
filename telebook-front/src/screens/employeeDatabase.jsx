@@ -1,20 +1,17 @@
-import React, { useEffect } from 'react';
-import EmployeeTable from '../components/EmployeeTable';
-import { observer } from 'mobx-react-lite';
-import EmployeeTableStore from '../store/EmployeeTableStore';
-import { Button, Form, Pagination } from 'react-bootstrap';
+import React, { useState} from 'react';
 import { Spinner } from 'react-bootstrap';
+import EmployeeTable from '../components/EmployeeTable';
 import Title from '../components/Title/Title';
 import Wrapper from '../components/Wrapper/Wrapper';
+import SearchBar from '../components/SearchBar/SearchBar';
+import { useGetEmployeesQuery } from '../api/employee.api';
 
-const employeeTableStore = new EmployeeTableStore
+const EmployeeDatabase = () => {
+    
+    const employeeRes = useGetEmployeesQuery()
+    const [search, setSearch] = useState('')
 
-const EmployeeDatabase = observer(() => {
-    useEffect(() => {
-        employeeTableStore.fetchAllEmployeesAction()
-    }, [])
-
-    if (!employeeTableStore.employees) {
+    if (employeeRes.isLoading) {
         return (
             <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
@@ -25,14 +22,19 @@ const EmployeeDatabase = observer(() => {
     return (
         <div className='main'>
             <Title title="Сотрудники университета"></Title>
+            <SearchBar onChange={(e) => setSearch(e)}/>
             <Wrapper>
-                <Pagination>{employeeTableStore.pages}</Pagination>
-                <EmployeeTable employees={employeeTableStore.employees}></EmployeeTable>
-                <Pagination>{employeeTableStore.pages}</Pagination>
+            <EmployeeTable employees={
+                employeeRes.data.filter((item) => {
+                    return search.toLowerCase() === ''
+                    ? item 
+                    : item.name.toLowerCase().includes(search.toLowerCase()) 
+                })
+            }></EmployeeTable>
             </Wrapper>
 
         </div>
     );
-})
+}
 
 export default EmployeeDatabase;

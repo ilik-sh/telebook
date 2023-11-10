@@ -1,28 +1,34 @@
-import React, { useEffect } from 'react';
-import {Container} from 'react-bootstrap'
+import React from 'react';
+import { Spinner } from 'react-bootstrap';
 import UnitList from '../components/UnitList';
-import UnitStore from '../store/UnitStore';
-import {observer} from 'mobx-react-lite'
 import Wrapper from '../components/Wrapper/Wrapper';
 import Title from '../components/Title/Title';
+import { useGetChairsQuery } from '../api/unit.api';
 
-const unitStore = new UnitStore
+const Chairs = () => {
+    
+    const unitsRes = useGetChairsQuery()
 
-const Chairs = observer(() => {
-    useEffect( () => {
-      unitStore.fetchChairsAction()
-  }, [])
+    if (unitsRes.isLoading) {
+        return (
+            <Spinner animation="border" role="status">
+                 <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        )
+    }
 
     return (
         <div className='main'>
-            
             <Title title="Кафедры"></Title>
             <Wrapper>
-            
-            <UnitList units={unitStore.units}></UnitList>
+            {
+                unitsRes.data.length > 0
+                ? <UnitList units={unitsRes.data}></UnitList>
+                : null
+            }
             </Wrapper>
         </div>
         
     )
-})
+}
 export default Chairs;

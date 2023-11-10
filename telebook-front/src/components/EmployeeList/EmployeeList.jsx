@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import {Col, Container, Row} from 'react-bootstrap'
-import EmployeeCard from '../EmployeeCard/EmployeeCard';
-import { fetchEmployeesForUnit } from '../../api/employeeAPI';
-import {observer} from 'mobx-react-lite'
-import { Spinner } from 'react-bootstrap';
+import React from 'react';
+import {Col, Row, Spinner} from 'react-bootstrap'
+import EmployeeCard from '../EmployeeCard/EmployeeCard';    
+import Section from '../Section/Section';
 import styles from './EmployeeList.module.css'
 
 
-const EmployeeList = observer(({employees}) => {
+const EmployeeList = ({employees}) => {
     if (!employees) return (
         <Spinner animation="border" role="status">
       <span className="visually-hidden">Loading...</span>
@@ -15,6 +13,7 @@ const EmployeeList = observer(({employees}) => {
     )
 
     return (
+        <Section title="Сотрудники">
             <Row className='gy-2'>
                 {employees.map((employee, index) =>
                     <Col key={employee.id} md={6}>
@@ -26,7 +25,8 @@ const EmployeeList = observer(({employees}) => {
                     </Col>
                 )}
             </Row>
+        </Section>
         )
-})
+}
 
 export default EmployeeList

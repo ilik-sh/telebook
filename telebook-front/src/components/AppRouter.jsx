@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import { navRoutes, unitRoute } from '../routes';
-import { TelebookContext } from '../index';
-import UnitPage from '../screens/UnitPage/UnitPage';
 
 const AppRouter = () => {
-    const {user} = useContext(TelebookContext)
     return (
         <Routes>
         {navRoutes.map(({path, Element}) =>

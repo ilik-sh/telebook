@@ -1,42 +1,43 @@
-import EmployeeList from '../../components/EmployeeList/EmployeeList';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Spinner } from 'react-bootstrap';
+import EmployeeList from '../../components/EmployeeList/EmployeeList';
 import UnitList from '../../components/UnitList';
-import UnitStore from '../../store/UnitStore';
-import EmployeeStore from '../../store/EmployeeStore';
-import {observer} from 'mobx-react-lite'
-import Section from '../../components/Section/Section';
-import styles from './UnitPage.module.css'
 import Wrapper from '../../components/Wrapper/Wrapper';
+import Title from '../../components/Title/Title';
+import { useGetSubunitsQuery, useGetUnitByIdQuery } from '../../api/unit.api';
+import { useGetEmployeesForUnitQuery } from '../../api/employee.api';
+import Loading from '../../components/Loading/Loading';
 
-const employeeStore = new EmployeeStore
-const unitStore = new UnitStore
-
-
-const UnitPage = observer(() => {
+const UnitPage = () => {
     const {unitId} = useParams()
 
-    useEffect( () => {
-        employeeStore.fetchEmployeesAction(unitId)
-        unitStore.fetchSubunitsAction(unitId)
-    }, [])
+    const subunitsRes = useGetSubunitsQuery(unitId)
+    const employeesRes = useGetEmployeesForUnitQuery(unitId)
+    const unitRes = useGetUnitByIdQuery(unitId)
+
+    if (unitRes.isLoading || subunitsRes.isLoading || employeesRes.isLoading) {
+        return (
+            <Loading/>
+        )
+    }
 
     return (
         <div className='main'>
             <Wrapper>
-                {employeeStore.employees.length != 0
-                    ? <Section title="Сотрудники">
-                        <EmployeeList employees={employeeStore.employees}></EmployeeList>
-                    </Section>
-                    : null}
-                {unitStore.units.length != 0
-                    ? <Section title="Кафедры">
-                        <UnitList units={unitStore.units}></UnitList>
-                    </Section>
-                    : null}
+                <Title title={unitRes.data.name}></Title>
+                    {
+                        employeesRes.data.length > 0
+                        ? <EmployeeList employees={employeesRes.data}></EmployeeList>
+                        : null
+                    }
+                    {
+                        subunitsRes.data.length > 0
+                        ? <UnitList units={subunitsRes.data}></UnitList>
+                        : null
+                    }
             </Wrapper>
         </div>
     );
-})
+}
 
 export default UnitPage;

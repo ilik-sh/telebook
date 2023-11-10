@@ -37,11 +37,11 @@
     align-items: center;
     margin: 0;
     transition: .35s ease;
+    font-size: 20px;
 }
 
 .link:hover {
     color: #284185;
-    
 }
 
 .link:hover > svg {
