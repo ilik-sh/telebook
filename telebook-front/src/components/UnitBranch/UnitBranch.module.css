@@ -1,0 +1,82 @@
+.tree,
+.subtree {
+  list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 400;
+    color: #484646
+}
+
+a:hover {
+  color: #2e4a97;
+}
+
+.subtree {
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 0;
+}
+
+.treeToggleLabel {
+  user-select: none;
+  cursor: pointer;
+  &:after {
+    display: inline-block;
+    content: "+";
+    color: #999;
+    margin-left: 8px;
+  }
+}
+
+.treeToggle {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.treeToggle:checked + .treeToggleLabel:after {
+  content: "-";
+}
+
+.treeToggle:checked + .treeToggleLabel a {
+  color: #2e4a97;
+}
+
+.treeToggle + .treeToggleLabel + .subtree {
+  animation-name: slideOut;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+}
+
+.treeToggle:checked + .treeToggleLabel + .subtree {
+  animation-name: slideIn;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideIn {
+    0% {
+      max-height: 0;
+      opacity: 0;
+    }
+  
+    100% {
+      max-height: 999px;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOut {
+    0% {
+      height: auto;
+      opacity: 1;
+    }
+  
+    100% {
+      height: 0;
+      opacity: 0;
+    }
+  }
