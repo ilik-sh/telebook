@@ -1,6 +1,4 @@
 import { Pagination } from "react-bootstrap"
-import { fetchAllEmployees } from "../api/employeeAPI"
-import { makeAutoObservable, runInAction } from "mobx"
 
 
 export default class EmployeeTableStore {
@@ -9,15 +7,10 @@ export default class EmployeeTableStore {
     _selectedPage = 1
 
     constructor() {
-        makeAutoObservable(this)
     }
 
     fetchAllEmployeesAction = async () => {
         try {
-            const fetchedEmployees = await fetchAllEmployees()
-            runInAction(() => { 
-                this._employees = this.pageEmployees(fetchedEmployees)
-            })
             
         } catch {
             throw new Error("Error fetching employees")
