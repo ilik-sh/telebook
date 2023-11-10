@@ -1,3 +1,4 @@
+const createTree = require('../helpers/createTree')
 const { getUnits, createUnit, getUnitByName, getSubunitsForUnit, getUnitById, getDeaneries, getChairs }  = require('./unitRepository')
 
 class UnitController { 
@@ -38,6 +39,13 @@ class UnitController {
     async getChairs(req, res) {
         const chairs = await getChairs()
         return res.json(chairs)
+    }
+
+    async getUnitTree(req, res) {
+        const units = await getUnits()
+        const unitTree = createTree(units)
+        console.log(unitTree)
+        return res.json(unitTree)
     }
 }
 

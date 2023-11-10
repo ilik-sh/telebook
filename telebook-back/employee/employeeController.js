@@ -9,6 +9,7 @@ class EmployeeController {
 
     async getOne(req, res) {
             const { name } = req.query
+            console.log(req.query)
             const employee = await getEmployeeByName(name)
             return res.json(employee)
     }

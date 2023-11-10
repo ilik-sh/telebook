@@ -1,7 +1,7 @@
-const { param } = require('express-validator')
+const { query } = require('express-validator')
 
 const nameValidator = [
-    param('name').exists()
+    query('name').exists()
 ]
 
 module.exports = {

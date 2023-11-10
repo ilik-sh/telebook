@@ -51,9 +51,12 @@ const getEmployeeByName = (nameLike) => {
         ],
         where: {
             name: {
-                [Op.like] : `${nameLike}%`
+                [Op.iLike] : `%${nameLike}%`
             }
-        }
+        },
+        order: [
+            [{model: Position}, 'weight', 'DESC']
+        ]
     })
 
     return employee

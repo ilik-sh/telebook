@@ -15,7 +15,7 @@ const getUnitByName = (nameLike) => {
     const unit = Unit.findAll({
         where: {
             name: {
-                [Op.iLike] : `%${nameLike}%`
+                [Op.like] : `%${nameLike}%`
             }
         }
     })

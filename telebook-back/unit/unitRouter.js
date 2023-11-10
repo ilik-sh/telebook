@@ -7,11 +7,12 @@ const router = new Router
 
 router.post('/', unitCreateValidator, validationMiddleware, unitController.create)
 router.get('/', unitController.getAll)
-router.get('/findByName', nameValidator, validationMiddleware, unitController.getOneByName)
+router.get('/findByName',  unitController.getOneByName)
 router.get('/findById/:unitId', unitIdValidator, validationMiddleware, unitController.getOneById)
 router.get('/findSubunits/:unitId', unitIdValidator, validationMiddleware, unitController.getSubunits)
 router.get('/findDeaneries', unitController.getDeaneries)
 router.get('/findChairs', unitController.getChairs)
+router.get('/tree', unitController.getUnitTree)
 
 
 module.exports = router
