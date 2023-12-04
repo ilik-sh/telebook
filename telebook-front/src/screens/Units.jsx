@@ -2,6 +2,7 @@ import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import UnitBranch from '../components/UnitBranch/UnitBranch';
 import Wrapper from '../components/Wrapper/Wrapper';
+import Loading from '../components/Loading/Loading';
 import Title from '../components/Title/Title';
 import { useGetUnitTreeQuery } from '../api/unit.api';
 
@@ -11,9 +12,7 @@ const Units = () => {
 
     if (unitsRes.isLoading) {
         return (
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <Loading/>
         )
     }
 

@@ -4,13 +4,12 @@ import NavBar from "./components/NavBar";
 import AppRouter from "./components/AppRouter";
 import './styles/global.css'
 import Footer from "./components/Footer/Footer";
+import Layout from "./components/Layout /Layout";
 
 function App() {
   return (
     <BrowserRouter>
-      <NavBar/>
-      <AppRouter/>
-      <Footer/>
+      <Layout/>
     </BrowserRouter>
   );
 }

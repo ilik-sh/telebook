@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import { Spinner } from 'react-bootstrap';
 import EmployeeTable from '../components/EmployeeTable';
+import Loading from '../components/Loading/Loading';
 import Title from '../components/Title/Title';
 import Wrapper from '../components/Wrapper/Wrapper';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -13,9 +14,7 @@ const EmployeeDatabase = () => {
 
     if (employeeRes.isLoading) {
         return (
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <Loading/>
         )
     }
 
