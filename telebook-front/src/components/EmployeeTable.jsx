@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import { Table } from 'react-bootstrap';
 
 function EmployeeTable({employees}) {
@@ -34,4 +34,4 @@ function EmployeeTable({employees}) {
     );
 }
 
-export default EmployeeTable;
+export default (EmployeeTable);
